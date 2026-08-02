@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coqueluche Sudeste - Análise Espacial</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local CSS styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="header-titles">
+                    <h2>Coqueluche</h2>
+                    <p>Análise Epidemiológica</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span class="menu-text">Visão Geral</span>
+                </a>
+                <a href="perfil-sociodemografico.html" class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span class="menu-text">Perfil Sociodemográfico</span>
+                </a>
+                <a href="analise-temporal.html" class="menu-item">
+                    <span class="menu-icon">📈</span>
+                    <span class="menu-text">Análise Temporal</span>
+                </a>
+                <a href="tempo-tratamento.html" class="menu-item">
+                    <span class="menu-icon">⏱️</span>
+                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                </a>
+                <a href="analise-espacial.html" class="menu-item active">
+                    <span class="menu-icon">🗺️</span>
+                    <span class="menu-text">Análise Espacial</span>
+                </a>
+                <a href="analise-espaco-temporal.html" class="menu-item">
+                    <span class="menu-icon">📍</span>
+                    <span class="menu-text">Análise Espaço-Temporal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Região Sudeste</p>
+                <span>2015 – 2025</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-navbar">
+                <h1 id="page-title">Análise Espacial</h1>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-btn" title="Alternar tema">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section id="analise-espacial" class="tab-content active">
+                    <div class="metrics-grid">
+                        <div class="metric-card bg-navy">
+                            <div class="metric-info">
+                                <span class="metric-label">Índice de Moran Global</span>
+                                <h3 class="metric-value">0,083</h3>
+                            </div>
+                            <div class="metric-badge success">p = 0,004</div>
+                        </div>
+                        <div class="metric-card bg-navy">
+                            <div class="metric-info">
+                                <span class="metric-label">Autocorrelação Espacial</span>
+                                <h3 class="metric-value">Positiva</h3>
+                            </div>
+                            <div class="metric-badge info">Significativa</div>
+                        </div>
+                        <div class="metric-card bg-navy">
+                            <div class="metric-info">
+                                <span class="metric-label">Associação Cobertura x Casos</span>
+                                <h3 class="metric-value">Fraca</h3>
+                            </div>
+                            <div class="metric-badge warning">0,007 a 0,026</div>
+                        </div>
+                    </div>
+
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <h3>Resultados da Análise Espacial (Univariada)</h3>
+                            <p>A análise de autocorrelação espacial univariada das taxas brutas e suavizadas de coqueluche revelou a existência de dependência espacial significativa (I = 0,083; p = 0,004). Isso significa que os casos de coqueluche não estão distribuídos ao acaso no Sudeste, mas sim concentrados em padrões geográficos específicos.</p>
+                            <p><strong>Aglomerados (Clusters LISA):</strong></p>
+                            <ul>
+                                <li><strong>Alto-Alto (Alta incidência cercada por alta incidência):</strong> Identificados principalmente em porções do estado de Minas Gerais.</li>
+                                <li><strong>Baixo-Baixo (Baixa incidência cercada por baixa incidência):</strong> Localizados em regiões com baixas notificações.</li>
+                            </ul>
+                        </div>
+                        <div class="detail-card">
+                            <h3>Resultados Bivariados (Cobertura Vacinal)</h3>
+                            <p>Contrariando a hipótese inicial de forte associação negativa (onde baixa cobertura geraria imediatamente alta taxa de casos), os Índices de Moran Bivariados apresentaram valores extremamente baixos (0,007 a 0,026) para os cinco indicadores vacinais avaliados.</p>
+                            <p>Esse resultado sugere que a relação espacial direta e pontual entre a vacinação agregada e a taxa de casos é fraca ao nível municipal, indicando a necessidade de avaliar outros determinantes estruturais (ex: fluxos populacionais e desigualdades no acesso ao diagnóstico oportuno).</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Data and logic scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

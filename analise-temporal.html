@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coqueluche Sudeste - Análise Temporal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local CSS styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="header-titles">
+                    <h2>Coqueluche</h2>
+                    <p>Análise Epidemiológica</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span class="menu-text">Visão Geral</span>
+                </a>
+                <a href="perfil-sociodemografico.html" class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span class="menu-text">Perfil Sociodemográfico</span>
+                </a>
+                <a href="analise-temporal.html" class="menu-item active">
+                    <span class="menu-icon">📈</span>
+                    <span class="menu-text">Análise Temporal</span>
+                </a>
+                <a href="tempo-tratamento.html" class="menu-item">
+                    <span class="menu-icon">⏱️</span>
+                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                </a>
+                <a href="analise-espacial.html" class="menu-item">
+                    <span class="menu-icon">🗺️</span>
+                    <span class="menu-text">Análise Espacial</span>
+                </a>
+                <a href="analise-espaco-temporal.html" class="menu-item">
+                    <span class="menu-icon">📍</span>
+                    <span class="menu-text">Análise Espaço-Temporal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Região Sudeste</p>
+                <span>2015 – 2025</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-navbar">
+                <h1 id="page-title">Análise Temporal</h1>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-btn" title="Alternar tema">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section id="analise-temporal" class="tab-content active">
+                    <div class="temporal-layout">
+                        <!-- Charts Grid -->
+                        <div class="temporal-charts">
+                            <div class="chart-card shadow-card">
+                                <h3>Casos Confirmados de Coqueluche (2015 – 2025)</h3>
+                                <div class="canvas-container-large">
+                                    <canvas id="chart-temporal-casos"></canvas>
+                                </div>
+                            </div>
+                            <div class="chart-card shadow-card">
+                                <h3>Taxa de Incidência (por 100.000 hab.) vs População</h3>
+                                <div class="canvas-container-large">
+                                    <canvas id="chart-temporal-taxa"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Table -->
+                        <div class="table-container shadow-card margin-top">
+                            <h3 class="table-title">Série Histórica dos Casos de Coqueluche e Indicadores Temporais</h3>
+                            <div class="table-responsive">
+                                <table class="epidemiological-table" id="temporal-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Ano</th>
+                                            <th class="text-center">Casos de Coqueluche (n)</th>
+                                            <th class="text-center">População Estimada</th>
+                                            <th class="text-center">Taxa de Incidência (por 100.000 hab.)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="temporal-table-body">
+                                        <!-- Will be populated by JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Data and logic scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

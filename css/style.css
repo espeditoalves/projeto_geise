@@ -46,6 +46,7 @@
     --table-header-bg: #1e293b;
     --table-row-even: #1e293b40;
     --table-row-hover: #1e293b80;
+    --row-highlight-bg: rgba(59, 130, 246, 0.14);
 }
 
 /* Light Theme Variables */
@@ -76,6 +77,7 @@
     --table-header-bg: #f1f5f9;
     --table-row-even: #f8fafc;
     --table-row-hover: #f1f5f980;
+    --row-highlight-bg: rgba(37, 99, 235, 0.08);
 }
 
 /* ----------------------------------------------------
@@ -249,6 +251,14 @@ body {
     flex-grow: 1;
     overflow-y: auto;
     padding: var(--space-xl);
+}
+
+/* Cap content width so it stays readable/well-proportioned on large
+   desktop monitors (~27in, 2560px) instead of stretching edge-to-edge */
+.content-wrapper > * {
+    max-width: 1900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tab-content {
@@ -470,6 +480,272 @@ body {
 }
 
 /* ----------------------------------------------------
+   SOCIODEMOGRAPHIC KPI ROW
+   ---------------------------------------------------- */
+.socio-kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.socio-kpi-card {
+    border-radius: 12px;
+    padding: var(--space-lg);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    box-shadow: var(--shadow-md);
+}
+
+.socio-kpi-card .kpi-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.socio-kpi-card .kpi-icon svg {
+    width: 22px;
+    height: 22px;
+}
+
+.kpi-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+    display: block;
+}
+
+.kpi-value {
+    font-family: var(--font-header);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 2px;
+    letter-spacing: -0.02em;
+}
+
+.kpi-pct {
+    font-size: 0.75rem;
+    opacity: 0.85;
+}
+
+.kpi-card--blue { background: linear-gradient(135deg, #1d4ed8, #3b82f6); }
+.kpi-card--navy { background: linear-gradient(135deg, #0f172a, #1e40af); }
+.kpi-card--purple { background: linear-gradient(135deg, #6d28d9, #8b5cf6); }
+.kpi-card--slate { background: linear-gradient(135deg, #475569, #64748b); }
+
+/* ----------------------------------------------------
+   SOCIODEMOGRAPHIC DASHBOARD CARDS
+   ---------------------------------------------------- */
+.socio-dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.socio-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    transition: all var(--transition-fast);
+}
+
+.socio-card:hover {
+    border-color: var(--border-hover);
+}
+
+.socio-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.socio-card-header h3 {
+    font-family: var(--font-header);
+    font-size: 1.05rem;
+    color: var(--text-primary);
+}
+
+.socio-card-subtitle {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.icon-badge {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #ffffff;
+}
+
+.icon-badge svg {
+    width: 22px;
+    height: 22px;
+}
+
+.icon-badge--blue { background-color: var(--color-primary); }
+.icon-badge--green { background-color: var(--color-secondary); }
+.icon-badge--cyan { background-color: var(--color-info); }
+.icon-badge--orange { background-color: var(--color-warning); }
+.icon-badge--red { background-color: var(--color-danger); }
+.icon-badge--purple { background-color: #8b5cf6; }
+.icon-badge--pink { background-color: #ec4899; }
+.icon-badge--navy { background-color: #1e293b; }
+
+.socio-card-body {
+    display: grid;
+    grid-template-columns: minmax(160px, 42%) 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.socio-card-body--donut {
+    grid-template-columns: 160px 1fr;
+}
+
+.socio-card-body--wide-chart {
+    grid-template-columns: minmax(220px, 56%) 1fr;
+}
+
+.socio-chart-col {
+    position: relative;
+    height: 210px;
+}
+
+.socio-table-col {
+    overflow-x: auto;
+}
+
+.socio-mini-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+}
+
+.socio-mini-table th {
+    text-align: left;
+    padding: var(--space-sm);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border-color);
+    background-color: var(--table-header-bg);
+}
+
+.socio-mini-table td {
+    padding: var(--space-sm);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.socio-mini-table tbody tr:hover {
+    background-color: var(--table-row-hover);
+}
+
+.socio-mini-table tbody tr.row-highlight {
+    background-color: var(--row-highlight-bg);
+}
+
+.socio-mini-table .row-highlight td {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.socio-swatch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+    margin-right: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.socio-insight {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    background-color: var(--bg-hover);
+    border-left: 3px solid var(--color-primary);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: 6px;
+    line-height: 1.5;
+}
+
+.socio-insight strong {
+    color: var(--text-primary);
+}
+
+.socio-summary-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: var(--space-xl);
+}
+
+.summary-list {
+    list-style: none;
+    margin-top: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.summary-item strong {
+    color: var(--text-primary);
+}
+
+.summary-dot {
+    width: 8px;
+    height: 8px;
+    min-width: 8px;
+    border-radius: 50%;
+    margin-top: 7px;
+    background-color: var(--color-primary);
+}
+
+.summary-dot.dot-green { background-color: var(--color-secondary); }
+.summary-dot.dot-orange { background-color: var(--color-warning); }
+.summary-dot.dot-red { background-color: var(--color-danger); }
+.summary-dot.dot-purple { background-color: #8b5cf6; }
+
+/* ----------------------------------------------------
    EPIDEMIOLOGICAL TABLE STYLING
    ---------------------------------------------------- */
 .table-responsive {
@@ -618,7 +894,21 @@ body {
     .socio-grid {
         grid-template-columns: 1fr;
     }
-    
+
+    .socio-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .socio-card-body,
+    .socio-card-body--donut,
+    .socio-card-body--wide-chart {
+        grid-template-columns: 1fr;
+    }
+
+    .socio-kpi-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .temporal-charts {
         grid-template-columns: 1fr;
     }
@@ -654,6 +944,10 @@ body {
     }
     
     .details-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .socio-kpi-row {
         grid-template-columns: 1fr;
     }
 }

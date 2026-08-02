@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coqueluche Sudeste - Tempo Médio até Tratamento</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local CSS styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="header-titles">
+                    <h2>Coqueluche</h2>
+                    <p>Análise Epidemiológica</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span class="menu-text">Visão Geral</span>
+                </a>
+                <a href="perfil-sociodemografico.html" class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span class="menu-text">Perfil Sociodemográfico</span>
+                </a>
+                <a href="analise-temporal.html" class="menu-item">
+                    <span class="menu-icon">📈</span>
+                    <span class="menu-text">Análise Temporal</span>
+                </a>
+                <a href="tempo-tratamento.html" class="menu-item active">
+                    <span class="menu-icon">⏱️</span>
+                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                </a>
+                <a href="analise-espacial.html" class="menu-item">
+                    <span class="menu-icon">🗺️</span>
+                    <span class="menu-text">Análise Espacial</span>
+                </a>
+                <a href="analise-espaco-temporal.html" class="menu-item">
+                    <span class="menu-icon">📍</span>
+                    <span class="menu-text">Análise Espaço-Temporal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Região Sudeste</p>
+                <span>2015 – 2025</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-navbar">
+                <h1 id="page-title">Tempo Médio até Tratamento</h1>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-btn" title="Alternar tema">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section id="tempo-tratamento" class="tab-content active">
+                    <div class="alert-box info-alert">
+                        <span class="alert-icon">💡</span>
+                        <div class="alert-message">
+                            <h4>Nota Epidemiológica: Variável Sob Análise</h4>
+                            <p>Dados consolidados específicos sobre o <strong>Tempo Médio até o Tratamento</strong> não estão presentes no banco de dados numérico de coqueluche Sudeste. Abaixo são detalhados a relevância deste indicador e o modelo conceitual adotado no trabalho acadêmico de base.</p>
+                        </div>
+                    </div>
+
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <h3>Importância do Acesso Precoce ao Tratamento</h3>
+                            <p>O tempo decorrido entre o surgimento dos primeiros sintomas característicos da coqueluche (fase catarral) e a administração de antibióticos (como a azitromicina ou claritromicina) é um dos fatores mais determinantes no prognóstico clínico e no controle de surtos comunitários.</p>
+                            <p>O tratamento precoce reduz significativamente:</p>
+                            <ul>
+                                <li>A carga bacteriana na nasofaringe do paciente (reduzindo a transmissão secundária).</li>
+                                <li>A progressão dos sintomas para a fase paroxística grave, que comumente evolui com complicações respiratórias em crianças.</li>
+                                <li>A taxa de letalidade entre lactentes menores de um ano (grupo de maior risco de morte por apneia e pneumonia).</li>
+                            </ul>
+                        </div>
+                        <div class="detail-card">
+                            <h3>Indicadores de Saúde no Cuidado</h3>
+                            <p>As micropolíticas do cuidado de enfermagem evidenciam que o atraso no diagnóstico e início da terapêutica muitas vezes está associado à dificuldade de identificação precoce da suspeita clínica pela equipe de atenção primária, além de barreiras socioespaciais de acesso à rede de saúde.</p>
+                            <p>Com a implantação futura de dados sobre o tempo até o tratamento no SINAN, o dashboard poderá mapear o tempo médio (em dias) por município e sua relação espacial com os locais de maiores taxas de óbito.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Data and logic scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

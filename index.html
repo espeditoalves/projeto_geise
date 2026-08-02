@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coqueluche Sudeste - Análise Epidemiológica</title>
+    <title>Coqueluche Sudeste - Visão Geral</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,27 +26,27 @@
             </div>
             
             <nav class="sidebar-menu">
-                <a href="#" class="menu-item active" data-tab="visao-geral">
+                <a href="index.html" class="menu-item active">
                     <span class="menu-icon">🏠</span>
                     <span class="menu-text">Visão Geral</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="perfil-sociodemografico">
+                <a href="perfil-sociodemografico.html" class="menu-item">
                     <span class="menu-icon">👥</span>
                     <span class="menu-text">Perfil Sociodemográfico</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="analise-temporal">
+                <a href="analise-temporal.html" class="menu-item">
                     <span class="menu-icon">📈</span>
                     <span class="menu-text">Análise Temporal</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="tempo-tratamento">
+                <a href="tempo-tratamento.html" class="menu-item">
                     <span class="menu-icon">⏱️</span>
                     <span class="menu-text">Tempo Médio até Tratamento</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="analise-espacial">
+                <a href="analise-espacial.html" class="menu-item">
                     <span class="menu-icon">🗺️</span>
                     <span class="menu-text">Análise Espacial</span>
                 </a>
-                <a href="#" class="menu-item" data-tab="analise-espaco-temporal">
+                <a href="analise-espaco-temporal.html" class="menu-item">
                     <span class="menu-icon">📍</span>
                     <span class="menu-text">Análise Espaço-Temporal</span>
                 </a>
@@ -70,7 +70,6 @@
             </header>
 
             <div class="content-wrapper">
-                <!-- Section: Visão Geral -->
                 <section id="visao-geral" class="tab-content active">
                     <div class="welcome-banner">
                         <div class="banner-text">
@@ -130,205 +129,6 @@
                                     </ul>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section: Perfil Sociodemográfico -->
-                <section id="perfil-sociodemografico" class="tab-content">
-                    <div class="filter-bar">
-                        <label for="state-selector">Filtrar por Unidade Federativa (UF):</label>
-                        <select id="state-selector" class="custom-select">
-                            <option value="Total">Região Sudeste (Total)</option>
-                            <option value="São Paulo">São Paulo</option>
-                            <option value="Rio de Janeiro">Rio de Janeiro</option>
-                            <option value="Minas Gerais">Minas Gerais</option>
-                            <option value="Espírito Santo">Espírito Santo</option>
-                        </select>
-                    </div>
-
-                    <div class="socio-grid">
-                        <!-- Left Panel: Table -->
-                        <div class="table-container shadow-card">
-                            <h3 class="table-title">Distribuição das Variáveis Sociodemográficas dos Casos de Coqueluche</h3>
-                            <p class="table-subtitle">Dados de coqueluche estruturados no modelo do perfil de óbitos de referência</p>
-                            <div class="table-responsive">
-                                <table class="epidemiological-table" id="socio-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Variável</th>
-                                            <th class="text-center">Frequência (n)</th>
-                                            <th class="text-center">Percentual (%)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="socio-table-body">
-                                        <!-- Will be populated by JS -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                        <!-- Right Panel: Visual charts -->
-                        <div class="charts-sidebar">
-                            <div class="chart-card shadow-card">
-                                <h3>Distribuição por Gênero</h3>
-                                <div class="canvas-container">
-                                    <canvas id="chart-genero"></canvas>
-                                </div>
-                            </div>
-                            <div class="chart-card shadow-card">
-                                <h3>Distribuição por Raça/Cor</h3>
-                                <div class="canvas-container">
-                                    <canvas id="chart-raca"></canvas>
-                                </div>
-                            </div>
-                            <div class="chart-card shadow-card">
-                                <h3>Critério de Diagnóstico</h3>
-                                <div class="canvas-container">
-                                    <canvas id="chart-diagnostico"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section: Análise Temporal -->
-                <section id="analise-temporal" class="tab-content">
-                    <div class="temporal-layout">
-                        <!-- Charts Grid -->
-                        <div class="temporal-charts">
-                            <div class="chart-card shadow-card">
-                                <h3>Casos Confirmados de Coqueluche (2015 – 2025)</h3>
-                                <div class="canvas-container-large">
-                                    <canvas id="chart-temporal-casos"></canvas>
-                                </div>
-                            </div>
-                            <div class="chart-card shadow-card">
-                                <h3>Taxa de Incidência (por 100.000 hab.) vs População</h3>
-                                <div class="canvas-container-large">
-                                    <canvas id="chart-temporal-taxa"></canvas>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Table -->
-                        <div class="table-container shadow-card margin-top">
-                            <h3 class="table-title">Série Histórica dos Casos de Coqueluche e Indicadores Temporais</h3>
-                            <div class="table-responsive">
-                                <table class="epidemiological-table" id="temporal-table">
-                                    <thead>
-                                        <tr>
-                                            <th>Ano</th>
-                                            <th class="text-center">Casos de Coqueluche (n)</th>
-                                            <th class="text-center">População Estimada</th>
-                                            <th class="text-center">Taxa de Incidência (por 100.000 hab.)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="temporal-table-body">
-                                        <!-- Will be populated by JS -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section: Tempo Tratamento -->
-                <section id="tempo-tratamento" class="tab-content">
-                    <div class="alert-box info-alert">
-                        <span class="alert-icon">💡</span>
-                        <div class="alert-message">
-                            <h4>Nota Epidemiológica: Variável Sob Análise</h4>
-                            <p>Dados consolidados específicos sobre o <strong>Tempo Médio até o Tratamento</strong> não estão presentes no banco de dados numérico de coqueluche Sudeste. Abaixo são detalhados a relevância deste indicador e o modelo conceitual adotado no trabalho acadêmico de base.</p>
-                        </div>
-                    </div>
-
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <h3>Importância do Acesso Precoce ao Tratamento</h3>
-                            <p>O tempo decorrido entre o surgimento dos primeiros sintomas característicos da coqueluche (fase catarral) e a administração de antibióticos (como a azitromicina ou claritromicina) é um dos fatores mais determinantes no prognóstico clínico e no controle de surtos comunitários.</p>
-                            <p>O tratamento precoce reduz significativamente:</p>
-                            <ul>
-                                <li>A carga bacteriana na nasofaringe do paciente (reduzindo a transmissão secundária).</li>
-                                <li>A progressão dos sintomas para a fase paroxística grave, que comumente evolui com complicações respiratórias em crianças.</li>
-                                <li>A taxa de letalidade entre lactentes menores de um ano (grupo de maior risco de morte por apneia e pneumonia).</li>
-                            </ul>
-                        </div>
-                        <div class="detail-card">
-                            <h3>Indicadores de Saúde no Cuidado</h3>
-                            <p>As micropolíticas do cuidado de enfermagem evidenciam que o atraso no diagnóstico e início da terapêutica muitas vezes está associado à dificuldade de identificação precoce da suspeita clínica pela equipe de atenção primária, além de barreiras socioespaciais de acesso à rede de saúde.</p>
-                            <p>Com a implantação futura de dados sobre o tempo até o tratamento no SINAN, o dashboard poderá mapear o tempo médio (em dias) por município e sua relação espacial com os locais de maiores taxas de óbito.</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section: Análise Espacial -->
-                <section id="analise-espacial" class="tab-content">
-                    <div class="metrics-grid">
-                        <div class="metric-card bg-navy">
-                            <div class="metric-info">
-                                <span class="metric-label">Índice de Moran Global</span>
-                                <h3 class="metric-value">0,083</h3>
-                            </div>
-                            <div class="metric-badge success">p = 0,004</div>
-                        </div>
-                        <div class="metric-card bg-navy">
-                            <div class="metric-info">
-                                <span class="metric-label">Autocorrelação Espacial</span>
-                                <h3 class="metric-value">Positiva</h3>
-                            </div>
-                            <div class="metric-badge info">Significativa</div>
-                        </div>
-                        <div class="metric-card bg-navy">
-                            <div class="metric-info">
-                                <span class="metric-label">Associação Cobertura x Casos</span>
-                                <h3 class="metric-value">Fraca</h3>
-                            </div>
-                            <div class="metric-badge warning">0,007 a 0,026</div>
-                        </div>
-                    </div>
-
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <h3>Resultados da Análise Espacial (Univariada)</h3>
-                            <p>A análise de autocorrelação espacial univariada das taxas brutas e suavizadas de coqueluche revelou a existência de dependência espacial significativa (I = 0,083; p = 0,004). Isso significa que os casos de coqueluche não estão distribuídos ao acaso no Sudeste, mas sim concentrados em padrões geográficos específicos.</p>
-                            <p><strong>Aglomerados (Clusters LISA):</strong></p>
-                            <ul>
-                                <li><strong>Alto-Alto (Alta incidência cercada por alta incidência):</strong> Identificados principalmente em porções do estado de Minas Gerais.</li>
-                                <li><strong>Baixo-Baixo (Baixa incidência cercada por baixa incidência):</strong> Localizados em regiões com baixas notificações.</li>
-                            </ul>
-                        </div>
-                        <div class="detail-card">
-                            <h3>Resultados Bivariados (Cobertura Vacinal)</h3>
-                            <p>Contrariando a hipótese inicial de forte associação negativa (onde baixa cobertura geraria imediatamente alta taxa de casos), os Índices de Moran Bivariados apresentaram valores extremamente baixos (0,007 a 0,026) para os cinco indicadores vacinais avaliados.</p>
-                            <p>Esse resultado sugere que a relação espacial direta e pontual entre a vacinação agregada e a taxa de casos é fraca ao nível municipal, indicando a necessidade de avaliar outros determinantes estruturais (ex: fluxos populacionais e desigualdades no acesso ao diagnóstico oportuno).</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Section: Análise Espaço-Temporal -->
-                <section id="analise-espaco-temporal" class="tab-content">
-                    <div class="alert-box info-alert">
-                        <span class="alert-icon">📍</span>
-                        <div class="alert-message">
-                            <h4>Monitoramento de Surtos Espaço-Temporais</h4>
-                            <p>Esta seção descreve a metodologia e o modelo para rastreamento de aglomerados de coqueluche ativos na dimensão do espaço e tempo na Região Sudeste.</p>
-                        </div>
-                    </div>
-
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <h3>Detecção de Conglomerados Ativos</h3>
-                            <p>A análise espaço-temporal (como a estatística de varredura de Kulldorff) permite identificar aglomerados de casos que são estatisticamente significativos não apenas em uma localidade, mas em períodos específicos de tempo.</p>
-                            <p>Isso permite diferenciar:</p>
-                            <ul>
-                                <li><strong>Clusters Persistentes:</strong> Regiões que apresentam alta incidência durante todos os anos da série.</li>
-                                <li><strong>Clusters Emergentes:</strong> Novas áreas de surto que surgiram nos anos recentes (como em 2024 e 2025).</li>
-                            </ul>
-                        </div>
-                        <div class="detail-card">
-                            <h3>Implicações para a Vigilância Epidemiológica</h3>
-                            <p>O mapeamento dinâmico da propagação da doença ajuda a prever a direção do espalhamento bacteriano. No caso do surto de 2024, a identificação precoce das rotas de dispersão entre grandes centros urbanos do Sudeste (ex: a rota São Paulo – Rio de Janeiro) permite traçar estratégias vacinais de bloqueio regional.</p>
                         </div>
                     </div>
                 </section>

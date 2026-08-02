@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coqueluche Sudeste - Análise Espaço-Temporal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local CSS styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="header-titles">
+                    <h2>Coqueluche</h2>
+                    <p>Análise Epidemiológica</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span class="menu-text">Visão Geral</span>
+                </a>
+                <a href="perfil-sociodemografico.html" class="menu-item">
+                    <span class="menu-icon">👥</span>
+                    <span class="menu-text">Perfil Sociodemográfico</span>
+                </a>
+                <a href="analise-temporal.html" class="menu-item">
+                    <span class="menu-icon">📈</span>
+                    <span class="menu-text">Análise Temporal</span>
+                </a>
+                <a href="tempo-tratamento.html" class="menu-item">
+                    <span class="menu-icon">⏱️</span>
+                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                </a>
+                <a href="analise-espacial.html" class="menu-item">
+                    <span class="menu-icon">🗺️</span>
+                    <span class="menu-text">Análise Espacial</span>
+                </a>
+                <a href="analise-espaco-temporal.html" class="menu-item active">
+                    <span class="menu-icon">📍</span>
+                    <span class="menu-text">Análise Espaço-Temporal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Região Sudeste</p>
+                <span>2015 – 2025</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-navbar">
+                <h1 id="page-title">Análise Espaço-Temporal</h1>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-btn" title="Alternar tema">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section id="analise-espaco-temporal" class="tab-content active">
+                    <div class="alert-box info-alert">
+                        <span class="alert-icon">📍</span>
+                        <div class="alert-message">
+                            <h4>Monitoramento de Surtos Espaço-Temporais</h4>
+                            <p>Esta seção descreve a metodologia e o modelo para rastreamento de aglomerados de coqueluche ativos na dimensão do espaço e tempo na Região Sudeste.</p>
+                        </div>
+                    </div>
+
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <h3>Detecção de Conglomerados Ativos</h3>
+                            <p>A análise espaço-temporal (como a estatística de varredura de Kulldorff) permite identificar aglomerados de casos que são estatisticamente significativos não apenas em uma localidade, mas em períodos específicos de tempo.</p>
+                            <p>Isso permite diferenciar:</p>
+                            <ul>
+                                <li><strong>Clusters Persistentes:</strong> Regiões que apresentam alta incidência durante todos os anos da série.</li>
+                                <li><strong>Clusters Emergentes:</strong> Novas áreas de surto que surgiram nos anos recentes (como em 2024 e 2025).</li>
+                            </ul>
+                        </div>
+                        <div class="detail-card">
+                            <h3>Implicações para a Vigilância Epidemiológica</h3>
+                            <p>O mapeamento dinâmico da propagação da doença ajuda a prever a direção do espalhamento bacteriano. No caso do surto de 2024, a identificação precoce das rotas de dispersão entre grandes centros urbanos do Sudeste (ex: a rota São Paulo – Rio de Janeiro) permite traçar estratégias vacinais de bloqueio regional.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Data and logic scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

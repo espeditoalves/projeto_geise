@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coqueluche Sudeste - Perfil Sociodemográfico</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Local CSS styling -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="header-titles">
+                    <h2>Coqueluche</h2>
+                    <p>Análise Epidemiológica</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+                <a href="index.html" class="menu-item">
+                    <span class="menu-icon">🏠</span>
+                    <span class="menu-text">Visão Geral</span>
+                </a>
+                <a href="perfil-sociodemografico.html" class="menu-item active">
+                    <span class="menu-icon">👥</span>
+                    <span class="menu-text">Perfil Sociodemográfico</span>
+                </a>
+                <a href="analise-temporal.html" class="menu-item">
+                    <span class="menu-icon">📈</span>
+                    <span class="menu-text">Análise Temporal</span>
+                </a>
+                <a href="tempo-tratamento.html" class="menu-item">
+                    <span class="menu-icon">⏱️</span>
+                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                </a>
+                <a href="analise-espacial.html" class="menu-item">
+                    <span class="menu-icon">🗺️</span>
+                    <span class="menu-text">Análise Espacial</span>
+                </a>
+                <a href="analise-espaco-temporal.html" class="menu-item">
+                    <span class="menu-icon">📍</span>
+                    <span class="menu-text">Análise Espaço-Temporal</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <p>Região Sudeste</p>
+                <span>2015 – 2025</span>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-navbar">
+                <h1 id="page-title">Perfil Sociodemográfico</h1>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-btn" title="Alternar tema">
+                        <span class="theme-icon">☀️</span>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section id="perfil-sociodemografico" class="tab-content active">
+                    <div class="filter-bar">
+                        <label for="state-selector">Filtrar por Unidade Federativa (UF):</label>
+                        <select id="state-selector" class="custom-select">
+                            <option value="Total">Região Sudeste (Total)</option>
+                            <option value="São Paulo">São Paulo</option>
+                            <option value="Rio de Janeiro">Rio de Janeiro</option>
+                            <option value="Minas Gerais">Minas Gerais</option>
+                            <option value="Espírito Santo">Espírito Santo</option>
+                        </select>
+                    </div>
+
+                    <div class="socio-kpi-row">
+                        <div class="socio-kpi-card kpi-card--blue">
+                            <span class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                            </span>
+                            <div class="kpi-texts">
+                                <span class="kpi-label">Total de Casos</span>
+                                <h3 class="kpi-value" id="kpi-total">—</h3>
+                            </div>
+                        </div>
+                        <div class="socio-kpi-card kpi-card--navy">
+                            <span class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            </span>
+                            <div class="kpi-texts">
+                                <span class="kpi-label">Masculino</span>
+                                <h3 class="kpi-value" id="kpi-masculino">—</h3>
+                                <span class="kpi-pct" id="kpi-masculino-pct"></span>
+                            </div>
+                        </div>
+                        <div class="socio-kpi-card kpi-card--purple">
+                            <span class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            </span>
+                            <div class="kpi-texts">
+                                <span class="kpi-label">Feminino</span>
+                                <h3 class="kpi-value" id="kpi-feminino">—</h3>
+                                <span class="kpi-pct" id="kpi-feminino-pct"></span>
+                            </div>
+                        </div>
+                        <div class="socio-kpi-card kpi-card--slate">
+                            <span class="kpi-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                            </span>
+                            <div class="kpi-texts">
+                                <span class="kpi-label">Ignorado</span>
+                                <h3 class="kpi-value" id="kpi-ignorado">—</h3>
+                                <span class="kpi-pct" id="kpi-ignorado-pct"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="socio-dashboard-grid">
+                        <!-- Card: Sexo -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--blue">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Sexo</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por sexo</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--donut">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-sexo"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Sexo</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-sexo"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-sexo"></div>
+                        </div>
+
+                        <!-- Card: Faixa Etária -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--purple">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Faixa Etária</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por grupo etário</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-faixa_etaria"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Faixa</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-faixa_etaria"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-faixa_etaria"></div>
+                        </div>
+
+                        <!-- Card: Raça/Cor -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--cyan">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Raça/Cor</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por raça/cor</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--donut">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-raca"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Raça/Cor</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-raca"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-raca"></div>
+                        </div>
+
+                        <!-- Card: Zona de Residência -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--green">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Zona de Residência</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por zona de residência</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--donut">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-zona"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Zona</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-zona"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-zona"></div>
+                        </div>
+
+                        <!-- Card: Escolaridade -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--red">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-4.5"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Escolaridade</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por escolaridade</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--wide-chart">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-escolaridade"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Escolaridade</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-escolaridade"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-escolaridade"></div>
+                        </div>
+
+                        <!-- Card: Critério Diagnóstico -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--orange">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="m9 13 2 2 4-4"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Critério de Diagnóstico</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por critério diagnóstico</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--donut">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-criterio_diagnostico"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Critério</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-criterio_diagnostico"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-criterio_diagnostico"></div>
+                        </div>
+
+                        <!-- Card: Evolução do Caso -->
+                        <div class="socio-card">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--pink">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 12 8 12 10 18 14 6 16 12 21 12"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Evolução do Caso</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por desfecho clínico</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--donut">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-evolucao"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Evolução</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-evolucao"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-evolucao"></div>
+                        </div>
+                    </div>
+
+                    <!-- Summary Card -->
+                    <div class="socio-summary-card">
+                        <div class="socio-card-header">
+                            <span class="icon-badge icon-badge--navy">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+                            </span>
+                            <div>
+                                <h3>Resumo dos Principais Achados</h3>
+                                <p class="socio-card-subtitle">Síntese interpretativa dos indicadores sociodemográficos selecionados</p>
+                            </div>
+                        </div>
+                        <ul class="summary-list" id="socio-summary-list">
+                            <!-- Populated by JS -->
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Data and logic scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
