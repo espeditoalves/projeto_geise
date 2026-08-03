@@ -27,27 +27,27 @@
 
             <nav class="sidebar-menu">
                 <a href="index.html" class="menu-item">
-                    <span class="menu-icon">🏠</span>
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"/><path d="M5 9v11a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9"/></svg></span>
                     <span class="menu-text">Visão Geral</span>
                 </a>
                 <a href="perfil-sociodemografico.html" class="menu-item active">
-                    <span class="menu-icon">👥</span>
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
                     <span class="menu-text">Perfil Sociodemográfico</span>
                 </a>
                 <a href="analise-temporal.html" class="menu-item">
-                    <span class="menu-icon">📈</span>
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
                     <span class="menu-text">Análise Temporal</span>
                 </a>
                 <a href="tempo-tratamento.html" class="menu-item">
-                    <span class="menu-icon">⏱️</span>
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
                     <span class="menu-text">Tempo Médio até Tratamento</span>
                 </a>
                 <a href="analise-espacial.html" class="menu-item">
-                    <span class="menu-icon">🗺️</span>
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
                     <span class="menu-text">Análise Espacial</span>
                 </a>
                 <a href="analise-espaco-temporal.html" class="menu-item">
-                    <span class="menu-icon">📍</span>
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
                     <span class="menu-text">Análise Espaço-Temporal</span>
                 </a>
             </nav>
@@ -233,33 +233,6 @@
                             <div class="socio-insight" id="insight-zona"></div>
                         </div>
 
-                        <!-- Card: Escolaridade -->
-                        <div class="socio-card">
-                            <div class="socio-card-header">
-                                <span class="icon-badge icon-badge--red">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-4.5"/></svg>
-                                </span>
-                                <div>
-                                    <h3>Escolaridade</h3>
-                                    <p class="socio-card-subtitle">Distribuição dos casos por escolaridade</p>
-                                </div>
-                            </div>
-                            <div class="socio-card-body socio-card-body--wide-chart">
-                                <div class="socio-chart-col">
-                                    <canvas id="chart-escolaridade"></canvas>
-                                </div>
-                                <div class="socio-table-col">
-                                    <table class="socio-mini-table">
-                                        <thead>
-                                            <tr><th>Escolaridade</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
-                                        </thead>
-                                        <tbody id="table-escolaridade"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="socio-insight" id="insight-escolaridade"></div>
-                        </div>
-
                         <!-- Card: Critério Diagnóstico -->
                         <div class="socio-card">
                             <div class="socio-card-header">
@@ -312,6 +285,33 @@
                                 </div>
                             </div>
                             <div class="socio-insight" id="insight-evolucao"></div>
+                        </div>
+
+                        <!-- Card: Escolaridade -->
+                        <div class="socio-card socio-card--centered">
+                            <div class="socio-card-header">
+                                <span class="icon-badge icon-badge--red">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12.5V17c0 1.66 2.69 3 6 3s6-1.34 6-3v-4.5"/></svg>
+                                </span>
+                                <div>
+                                    <h3>Escolaridade</h3>
+                                    <p class="socio-card-subtitle">Distribuição dos casos por escolaridade</p>
+                                </div>
+                            </div>
+                            <div class="socio-card-body socio-card-body--wide-chart">
+                                <div class="socio-chart-col">
+                                    <canvas id="chart-escolaridade"></canvas>
+                                </div>
+                                <div class="socio-table-col">
+                                    <table class="socio-mini-table">
+                                        <thead>
+                                            <tr><th>Escolaridade</th><th class="text-center">Casos (n)</th><th class="text-center">%</th></tr>
+                                        </thead>
+                                        <tbody id="table-escolaridade"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="socio-insight" id="insight-escolaridade"></div>
                         </div>
                     </div>
 

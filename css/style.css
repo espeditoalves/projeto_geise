@@ -176,10 +176,17 @@ body {
 }
 
 .menu-icon {
-    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.menu-icon svg {
+    width: 20px;
+    height: 20px;
 }
 
 .sidebar-footer {
@@ -547,9 +554,10 @@ body {
    ---------------------------------------------------- */
 .socio-dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--space-lg);
     margin-bottom: var(--space-lg);
+    align-items: stretch;
 }
 
 .socio-card {
@@ -566,6 +574,14 @@ body {
 
 .socio-card:hover {
     border-color: var(--border-hover);
+}
+
+.socio-card--centered {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: calc(50% - (var(--space-lg) / 2));
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .socio-card-header {
@@ -613,32 +629,44 @@ body {
 
 .socio-card-body {
     display: grid;
-    grid-template-columns: minmax(160px, 42%) 1fr;
+    grid-template-columns: minmax(220px, 44%) 1fr;
     gap: var(--space-lg);
     align-items: center;
+    flex: 1;
 }
 
 .socio-card-body--donut {
-    grid-template-columns: 160px 1fr;
+    grid-template-columns: 240px 1fr;
 }
 
 .socio-card-body--wide-chart {
-    grid-template-columns: minmax(220px, 56%) 1fr;
+    grid-template-columns: minmax(260px, 54%) 1fr;
 }
 
 .socio-chart-col {
     position: relative;
-    height: 210px;
+    height: 260px;
 }
 
 .socio-table-col {
-    overflow-x: auto;
+    min-width: 0;
 }
 
 .socio-mini-table {
     width: 100%;
+    table-layout: fixed;
     border-collapse: collapse;
     font-size: 0.82rem;
+}
+
+.socio-mini-table th:first-child,
+.socio-mini-table td:first-child {
+    width: 54%;
+}
+
+.socio-mini-table th:not(:first-child),
+.socio-mini-table td:not(:first-child) {
+    width: 23%;
 }
 
 .socio-mini-table th {
@@ -692,6 +720,14 @@ body {
 
 .socio-insight strong {
     color: var(--text-primary);
+}
+
+.socio-note {
+    display: inline-block;
+    margin-top: var(--space-xs);
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--text-muted);
 }
 
 .socio-summary-card {
@@ -903,6 +939,11 @@ body {
     .socio-card-body--donut,
     .socio-card-body--wide-chart {
         grid-template-columns: 1fr;
+    }
+
+    .socio-card--centered {
+        grid-column: auto;
+        max-width: 100%;
     }
 
     .socio-kpi-row {

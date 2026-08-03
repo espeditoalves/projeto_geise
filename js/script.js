@@ -120,7 +120,11 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             key: "escolaridade",
             categories: ["Analfabeto", "1ª a 4ª série incompleta do EF", "4ª série completa do EF", "5ª a 8ª série incompleta do EF", "Ensino fundamental completo", "Ensino médio incompleto", "Ensino médio completo", "Educação superior incompleta", "Educação superior completa", "Não se aplica", "Ignorado"],
-            chartType: "bar"
+            chartType: "bar",
+            // "Não se aplica" is mostly infants too young for school; at ~10x
+            // every other category it flattens a linear bar chart, so it's
+            // shown in the table but left out of the chart itself
+            excludeFromChart: ["Não se aplica"]
         },
         {
             key: "criterio_diagnostico",
@@ -200,7 +204,19 @@ document.addEventListener("DOMContentLoaded", () => {
             if (socioChartInstances[section.key]) {
                 socioChartInstances[section.key].destroy();
             }
-            const values = section.categories.map(cat => stateData[cat] || 0);
+
+            // Categories explicitly excluded from the chart (but not the table) —
+            // used for outlier buckets that would otherwise flatten the scale
+            const excludeSet = new Set(section.excludeFromChart || []);
+            const chartCategories = section.categories.filter(cat => !excludeSet.has(cat));
+            const chartValues = chartCategories.map(cat => stateData[cat] || 0);
+            const chartColors = isMultiColor
+                ? section.categories
+                    .map((cat, idx) => ({ cat, color: sectionColors[idx % sectionColors.length] }))
+                    .filter(item => !excludeSet.has(item.cat))
+                    .map(item => item.color)
+                : sectionColors;
+
             const ctx = canvas.getContext("2d");
 
             if (section.chartType === "doughnut") {
@@ -213,10 +229,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     type: "doughnut",
                     plugins: [ChartDataLabels, centerTextPlugin],
                     data: {
-                        labels: section.categories,
+                        labels: chartCategories,
                         datasets: [{
-                            data: values,
-                            backgroundColor: sectionColors,
+                            data: chartValues,
+                            backgroundColor: chartColors,
                             borderWidth: 1,
                             borderColor: colors.tooltipBg
                         }]
@@ -250,10 +266,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 socioChartInstances[section.key] = new Chart(ctx, {
                     type: "bar",
                     data: {
-                        labels: section.categories,
+                        labels: chartCategories,
                         datasets: [{
-                            data: values,
-                            backgroundColor: sectionColors,
+                            data: chartValues,
+                            backgroundColor: chartColors,
                             borderRadius: 4
                         }]
                     },
@@ -287,16 +303,30 @@ document.addEventListener("DOMContentLoaded", () => {
         // ---- Insight ----
         const insightEl = document.getElementById(`insight-${section.key}`);
         if (insightEl) {
-            if (total > 0 && ranked.length >= 2) {
+            let html = "";
+            // Only worth stating "top 2 concentrate X%" when there's a 3rd+
+            // category left out — with exactly 2 (e.g. Sexo), they trivially
+            // sum to ~100% and the sentence says nothing informative
+            if (total > 0 && ranked.length >= 3) {
                 const p1 = (ranked[0].count / total) * 100;
                 const p2 = (ranked[1].count / total) * 100;
-                insightEl.innerHTML = `<strong>${ranked[0].cat}</strong> (${formatPercent1(p1)}) e <strong>${ranked[1].cat}</strong> (${formatPercent1(p2)}) concentram ${formatPercent1(p1 + p2)} dos casos.`;
+                html = `<strong>${ranked[0].cat}</strong> (${formatPercent1(p1)}) e <strong>${ranked[1].cat}</strong> (${formatPercent1(p2)}) concentram ${formatPercent1(p1 + p2)} dos casos.`;
             } else if (total > 0 && ranked.length === 1) {
                 const p1 = (ranked[0].count / total) * 100;
-                insightEl.innerHTML = `<strong>${ranked[0].cat}</strong> concentra ${formatPercent1(p1)} dos casos.`;
-            } else {
-                insightEl.innerHTML = "";
+                html = `<strong>${ranked[0].cat}</strong> concentra ${formatPercent1(p1)} dos casos.`;
             }
+
+            if (section.excludeFromChart && total > 0) {
+                section.excludeFromChart.forEach(cat => {
+                    const count = stateData[cat] || 0;
+                    if (count === 0) return;
+                    const pct = formatPercent1((count / total) * 100);
+                    html += `<br><span class="socio-note">"${cat}" (${formatNumber(count)} casos, ${pct}) foi omitido do gráfico para preservar a escala comparativa; consulte a tabela para o valor completo.</span>`;
+                });
+            }
+
+            insightEl.innerHTML = html;
+            insightEl.style.display = html ? "" : "none";
         }
     }
 
