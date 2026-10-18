@@ -926,6 +926,59 @@ body {
 /* ----------------------------------------------------
    RESPONSIVENESS
    ---------------------------------------------------- */
+
+/* Notebooks de 14" — resolução efetiva típica ~1366x768 e, com escala
+   150%, ~1280x720. Compacta a base para o conteúdo caber bem na tela. */
+@media (max-width: 1440px) {
+    html { font-size: 15px; }
+
+    .sidebar { width: 244px; }
+    .content-wrapper { padding: var(--space-lg); }
+    .top-navbar { height: 62px; }
+
+    .welcome-banner { padding: var(--space-lg); }
+    .welcome-banner h3 { font-size: 1.3rem; }
+    .welcome-banner p { font-size: 0.88rem; }
+
+    .canvas-container-large { height: 260px; }
+    .socio-chart-col { height: 230px; }
+    .socio-card-body--donut { grid-template-columns: 210px 1fr; }
+
+    .state-stat-value { font-size: clamp(1.9rem, 3vw, 2.6rem); }
+    .state-detail-header h3 { font-size: 1.7rem; }
+    .stat-big,
+    .gap-value { font-size: 2.2rem; }
+    .spatial-banner h3 { font-size: 1.4rem; }
+    .map-frame img { max-width: 620px; }
+}
+
+@media (max-width: 1280px) {
+    html { font-size: 14px; }
+
+    .sidebar { width: 228px; }
+    .menu-item { padding: var(--space-sm) var(--space-md); }
+    .sidebar-menu { gap: var(--space-xs); }
+
+    .canvas-container-large { height: 230px; }
+    .socio-chart-col { height: 210px; }
+    .socio-card-body--donut { grid-template-columns: 190px 1fr; }
+
+    .vaccine-steps { gap: var(--space-sm); }
+    .vaccine-step { padding: var(--space-sm); }
+    .vaccine-step strong { font-size: 1.1rem; }
+
+    .map-frame img { max-width: 540px; }
+}
+
+/* Telas de notebook mais baixas (altura ~720-800px): reduz o excesso
+   vertical para expor mais conteúdo sem rolagem. */
+@media (max-height: 800px) {
+    .content-wrapper { padding-top: var(--space-md); padding-bottom: var(--space-md); }
+    .welcome-banner { margin-bottom: var(--space-lg); }
+    .overview-grid { margin-bottom: var(--space-lg); }
+    .socio-kpi-row { margin-bottom: var(--space-md); }
+}
+
 @media (max-width: 1024px) {
     .socio-grid {
         grid-template-columns: 1fr;
@@ -1046,7 +1099,7 @@ body {
    ---------------------------------------------------- */
 .overview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: var(--space-lg);
     margin-bottom: var(--space-xl);
 }
