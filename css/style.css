@@ -1716,6 +1716,13 @@ body {
 .stat-card .stat-ok { background-color: rgba(16, 185, 129, 0.14); color: var(--color-secondary); }
 .stat-card .stat-info { background-color: var(--row-highlight-bg); }
 
+.spatial-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-top: var(--space-lg);
+}
+
 .finding-box {
     margin-top: var(--space-lg);
     border-left: 4px solid var(--color-danger);
@@ -1726,6 +1733,34 @@ body {
 
 .finding-box h4 { font-family: var(--font-header); color: var(--color-danger); margin-bottom: var(--space-xs); }
 .finding-box p { font-size: 0.9rem; line-height: 1.6; color: var(--text-secondary); }
+
+.finding-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.finding-list li {
+    position: relative;
+    padding-left: 1.1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.finding-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--color-danger);
+}
+
+.finding-list strong { color: var(--text-primary); }
 
 @media (max-width: 1100px) {
     .state-explorer,
