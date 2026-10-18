@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coqueluche Sudeste - Análise Espacial</title>
+    <title>Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,17 +34,13 @@
                     <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
                     <span class="menu-text">Análise Temporal</span>
                 </a>
-                <a href="tempo-tratamento.html" class="menu-item">
-                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
-                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                <a href="cobertura-vacinal.html" class="menu-item">
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></span>
+                    <span class="menu-text">Cobertura Vacinal</span>
                 </a>
                 <a href="analise-espacial.html" class="menu-item active">
                     <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
                     <span class="menu-text">Análise Espacial</span>
-                </a>
-                <a href="analise-espaco-temporal.html" class="menu-item">
-                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                    <span class="menu-text">Análise Espaço-Temporal</span>
                 </a>
             </nav>
 
@@ -57,7 +53,10 @@
         <!-- Main Content Area -->
         <main class="main-content">
             <header class="top-navbar">
-                <h1 id="page-title">Análise Espacial</h1>
+                <div class="navbar-titles">
+                    <span class="site-title">Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</span>
+                    <h1 id="page-title">Análise Espacial</h1>
+                </div>
                 <div class="nav-actions">
                     <button id="theme-toggle" class="theme-btn" title="Alternar tema">
                         <span class="theme-icon">☀️</span>
@@ -67,44 +66,124 @@
 
             <div class="content-wrapper">
                 <section id="analise-espacial" class="tab-content active">
-                    <div class="metrics-grid">
-                        <div class="metric-card bg-navy">
-                            <div class="metric-info">
-                                <span class="metric-label">Índice de Moran Global</span>
-                                <h3 class="metric-value">0,083</h3>
-                            </div>
-                            <div class="metric-badge success">p = 0,004</div>
-                        </div>
-                        <div class="metric-card bg-navy">
-                            <div class="metric-info">
-                                <span class="metric-label">Autocorrelação Espacial</span>
-                                <h3 class="metric-value">Positiva</h3>
-                            </div>
-                            <div class="metric-badge info">Significativa</div>
-                        </div>
-                        <div class="metric-card bg-navy">
-                            <div class="metric-info">
-                                <span class="metric-label">Associação Cobertura x Casos</span>
-                                <h3 class="metric-value">Fraca</h3>
-                            </div>
-                            <div class="metric-badge warning">0,007 a 0,026</div>
+                    <div class="spatial-banner">
+                        <span class="spatial-banner-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                        </span>
+                        <div>
+                            <h3>Análise Espacial da Coqueluche</h3>
+                            <p>Região Sudeste do Brasil, 2015–2025</p>
                         </div>
                     </div>
 
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <h3>Resultados da Análise Espacial (Univariada)</h3>
-                            <p>A análise de autocorrelação espacial univariada das taxas brutas e suavizadas de coqueluche revelou a existência de dependência espacial significativa (I = 0,083; p = 0,004). Isso significa que os casos de coqueluche não estão distribuídos ao acaso no Sudeste, mas sim concentrados em padrões geográficos específicos.</p>
-                            <p><strong>Aglomerados (Clusters LISA):</strong></p>
-                            <ul>
-                                <li><strong>Alto-Alto (Alta incidência cercada por alta incidência):</strong> Identificados principalmente em porções do estado de Minas Gerais.</li>
-                                <li><strong>Baixo-Baixo (Baixa incidência cercada por baixa incidência):</strong> Localizados em regiões com baixas notificações.</li>
-                            </ul>
+                    <div class="spatial-steps" role="tablist" aria-label="Etapas da análise espacial">
+                        <button class="spatial-step active" role="tab" aria-selected="true" data-step="distribuicao">
+                            <strong>1. Distribuição espacial</strong>
+                            <span>Taxas brutas e suavizadas</span>
+                        </button>
+                        <button class="spatial-step" role="tab" aria-selected="false" data-step="lisa">
+                            <strong>2. Autocorrelação espacial (LISA)</strong>
+                            <span>Identificação de agrupamentos</span>
+                        </button>
+                        <button class="spatial-step" role="tab" aria-selected="false" data-step="bivariado">
+                            <strong>3. Cobertura vacinal × Coqueluche</strong>
+                            <span>Associação espacial bivariada</span>
+                        </button>
+                    </div>
+
+                    <!-- 1. Distribuição espacial -->
+                    <div class="spatial-panel active" id="step-distribuicao">
+                        <h3 class="section-heading">Distribuição espacial das taxas de coqueluche</h3>
+                        <p class="section-hint">Selecione o tipo de taxa para visualizar o mapa:</p>
+                        <div class="segmented" id="rate-toggle">
+                            <button class="segmented-btn active" data-rate="bruta">A. Taxa bruta</button>
+                            <button class="segmented-btn" data-rate="suavizada">B. Taxa suavizada</button>
                         </div>
-                        <div class="detail-card">
-                            <h3>Resultados Bivariados (Cobertura Vacinal)</h3>
-                            <p>Contrariando a hipótese inicial de forte associação negativa (onde baixa cobertura geraria imediatamente alta taxa de casos), os Índices de Moran Bivariados apresentaram valores extremamente baixos (0,007 a 0,026) para os cinco indicadores vacinais avaliados.</p>
-                            <p>Esse resultado sugere que a relação espacial direta e pontual entre a vacinação agregada e a taxa de casos é fraca ao nível municipal, indicando a necessidade de avaliar outros determinantes estruturais (ex: fluxos populacionais e desigualdades no acesso ao diagnóstico oportuno).</p>
+                        <div class="spatial-body">
+                            <figure class="map-frame">
+                                <img id="rate-map" src="img/taxa-bruta.png" alt="Mapa das taxas brutas de incidência de coqueluche por município da Região Sudeste">
+                                <figcaption id="rate-caption">A: Taxas brutas de incidência por 100.000 habitantes, por município de notificação.</figcaption>
+                            </figure>
+                        </div>
+                        <div class="finding-box">
+                            <h4>Principal achado</h4>
+                            <p id="rate-finding">A análise espacial das taxas revelou heterogeneidade entre os municípios da Região Sudeste. As taxas brutas apresentaram ampla variação, com ocorrência de valores bastante elevados em localidades pontuais, com destaque para áreas do centro-leste de Minas Gerais.</p>
+                        </div>
+                    </div>
+
+                    <!-- 2. LISA -->
+                    <div class="spatial-panel" id="step-lisa">
+                        <h3 class="section-heading">Autocorrelação espacial da coqueluche (LISA)</h3>
+                        <p class="section-hint">Mapa de agrupamentos de acordo com os Indicadores Locais de Associação Espacial (LISA).</p>
+                        <div class="spatial-body spatial-body--aside">
+                            <figure class="map-frame">
+                                <div class="map-with-legend">
+                                    <img src="img/lisa-univariado.png" alt="Mapa LISA univariado das taxas de coqueluche na Região Sudeste">
+                                    <ul class="cluster-legend" aria-label="LISA (Moran Univariado)">
+                                        <li class="cluster-legend-title">LISA (Moran Univariado)</li>
+                                        <li tabindex="0" data-tip="Municípios sem associação espacial estatisticamente significativa (p &gt; 0,05)."><span class="swatch swatch--ns"></span>Não Significativo</li>
+                                        <li tabindex="0" data-tip="Municípios com taxas elevadas cercados por municípios com taxas elevadas."><span class="swatch swatch--hh"></span>Alto-Alto</li>
+                                        <li tabindex="0" data-tip="Municípios com taxas baixas cercados por municípios com taxas baixas."><span class="swatch swatch--ll"></span>Baixo-Baixo</li>
+                                        <li tabindex="0" data-tip="Municípios discrepantes em relação à vizinhança: taxa elevada cercada por municípios com taxas baixas."><span class="swatch swatch--hl"></span>Alto-Baixo</li>
+                                        <li tabindex="0" data-tip="Municípios discrepantes em relação à vizinhança: taxa baixa cercada por municípios com taxas elevadas."><span class="swatch swatch--lh"></span>Baixo-Alto</li>
+                                    </ul>
+                                </div>
+                                <figcaption>Figura 3. Autocorrelação espacial univariada (LISA) das taxas de coqueluche na Região Sudeste do Brasil, 2015–2025. Passe o mouse sobre a legenda para ver a interpretação.</figcaption>
+                            </figure>
+                            <div class="spatial-aside">
+                                <div class="stat-card">
+                                    <span class="state-stat-label">Índice de Moran Global (univariado)</span>
+                                    <strong class="stat-big">0,083</strong>
+                                    <span class="stat-sub">(p = 0,004)</span>
+                                    <p class="stat-ok">Autocorrelação espacial positiva e estatisticamente significativa.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>Interpretação</h4>
+                                    <p>Municípios com taxas semelhantes tendem a estar geograficamente próximos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="finding-box">
+                            <h4>Principal achado</h4>
+                            <p>A análise local (LISA) identificou agrupamentos do tipo Alto-Alto, sobretudo em porções do centro de Minas Gerais e em áreas de transição entre os estados, além de agrupamentos Baixo-Baixo distribuídos pelo interior, evidenciando estruturação espacial não aleatória da doença.</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Bivariado -->
+                    <div class="spatial-panel" id="step-bivariado">
+                        <h3 class="section-heading">Associação espacial entre cobertura vacinal e coqueluche</h3>
+                        <p class="section-hint">Mapas de agrupamentos bivariados entre a taxa de coqueluche e os indicadores de cobertura vacinal.</p>
+                        <div class="segmented segmented--wrap" id="bivar-toggle"></div>
+                        <div class="spatial-body spatial-body--aside">
+                            <figure class="map-frame">
+                                <div class="map-with-legend">
+                                    <img id="bivar-map" src="img/bivariado-A.png" alt="Mapa de Moran bivariado entre a taxa de coqueluche e a cobertura vacinal">
+                                    <ul class="cluster-legend" aria-label="Moran Bivariado">
+                                        <li class="cluster-legend-title">Moran Bivariado</li>
+                                        <li tabindex="0" data-tip="Municípios sem associação espacial estatisticamente significativa (p &gt; 0,05)."><span class="swatch swatch--ns"></span>Não Significativo</li>
+                                        <li tabindex="0" data-tip="Municípios com taxas elevadas de coqueluche cercados por municípios com cobertura vacinal elevada."><span class="swatch swatch--hh"></span>Alto-Alto</li>
+                                        <li tabindex="0" data-tip="Municípios com taxas baixas de coqueluche cercados por municípios com cobertura vacinal baixa."><span class="swatch swatch--ll"></span>Baixo-Baixo</li>
+                                        <li tabindex="0" data-tip="Municípios com taxas elevadas de coqueluche cercados por municípios com cobertura vacinal baixa."><span class="swatch swatch--hl"></span>Alto-Baixo</li>
+                                        <li tabindex="0" data-tip="Municípios com taxas baixas de coqueluche cercados por municípios com cobertura vacinal elevada."><span class="swatch swatch--lh"></span>Baixo-Alto</li>
+                                    </ul>
+                                </div>
+                                <figcaption id="bivar-caption"></figcaption>
+                            </figure>
+                            <div class="spatial-aside">
+                                <div class="stat-card">
+                                    <span class="state-stat-label" id="bivar-label">Índice de Moran Bivariado</span>
+                                    <strong class="stat-big" id="bivar-value">0,007</strong>
+                                    <p class="stat-info">Valores próximos de zero indicam associação espacial global fraca entre a cobertura vacinal e a incidência de coqueluche.</p>
+                                </div>
+                                <div class="stat-card">
+                                    <h4>Padrão espacial</h4>
+                                    <p>Os mapas de clusters bivariados identificaram agrupamentos localizados, especialmente do tipo Baixo-Baixo no litoral paulista e fluminense e agrupamentos pontuais Alto-Alto no norte de Minas Gerais.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="finding-box">
+                            <h4>Principal achado</h4>
+                            <p>Na análise bivariada de Moran entre a incidência de coqueluche e os indicadores de cobertura vacinal, os índices apresentaram valores baixos para todos os imunobiológicos: 0,007 para a Penta, 0,007 para a DTP, 0,026 para o 2º reforço da DTP, 0,016 para o 1º reforço da DTP e 0,010 para a dTpa em gestantes. Esses resultados indicam associação espacial fraca entre a cobertura vacinal e a incidência da doença no nível agregado analisado.</p>
                         </div>
                     </div>
                 </section>
@@ -114,6 +193,7 @@
 
     <!-- Data and logic scripts -->
     <script src="js/data.js"></script>
+    <script src="js/estudo-data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

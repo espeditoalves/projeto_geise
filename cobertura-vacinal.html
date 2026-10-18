@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coqueluche Sudeste - Tempo Médio até Tratamento</title>
+    <title>Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,17 +34,13 @@
                     <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
                     <span class="menu-text">Análise Temporal</span>
                 </a>
-                <a href="tempo-tratamento.html" class="menu-item active">
-                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
-                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                <a href="cobertura-vacinal.html" class="menu-item active">
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></span>
+                    <span class="menu-text">Cobertura Vacinal</span>
                 </a>
                 <a href="analise-espacial.html" class="menu-item">
                     <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
                     <span class="menu-text">Análise Espacial</span>
-                </a>
-                <a href="analise-espaco-temporal.html" class="menu-item">
-                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                    <span class="menu-text">Análise Espaço-Temporal</span>
                 </a>
             </nav>
 
@@ -57,7 +53,10 @@
         <!-- Main Content Area -->
         <main class="main-content">
             <header class="top-navbar">
-                <h1 id="page-title">Tempo Médio até Tratamento</h1>
+                <div class="navbar-titles">
+                    <span class="site-title">Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</span>
+                    <h1 id="page-title">Cobertura Vacinal</h1>
+                </div>
                 <div class="nav-actions">
                     <button id="theme-toggle" class="theme-btn" title="Alternar tema">
                         <span class="theme-icon">☀️</span>
@@ -66,30 +65,45 @@
             </header>
 
             <div class="content-wrapper">
-                <section id="tempo-tratamento" class="tab-content active">
+                <section id="cobertura-vacinal" class="tab-content active">
+                    <!-- Esquema vacinal: cobertura média -->
+                    <div class="vaccine-overview">
+                        <span class="eyebrow">Visão do esquema vacinal</span>
+                        <h3 class="section-heading">Cobertura média na Região Sudeste</h3>
+                        <div class="vaccine-steps" id="vaccine-steps" role="tablist" aria-label="Indicadores vacinais"></div>
+                        <p class="vaccine-note">Nota: Penta: 3ª dose da vacina pentavalente; DTP: tríplice bacteriana; ref.: reforço; dTpa gest.: dTpa em gestantes. Fonte: Programa Nacional de Imunizações.</p>
+                    </div>
+
                     <div class="alert-box info-alert">
-                        <span class="alert-icon">💡</span>
+                        <span class="alert-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                        </span>
                         <div class="alert-message">
-                            <h4>Nota Epidemiológica: Variável Sob Análise</h4>
-                            <p>Dados consolidados específicos sobre o <strong>Tempo Médio até o Tratamento</strong> não estão presentes no banco de dados numérico de coqueluche Sudeste. Abaixo são detalhados a relevância deste indicador e o modelo conceitual adotado no trabalho acadêmico de base.</p>
+                            <p>As coberturas vacinais analisadas permaneceram abaixo da meta de <strong>95%</strong> preconizada pelo Programa Nacional de Imunizações (PNI) do Ministério da Saúde para o esquema básico.</p>
                         </div>
                     </div>
 
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <h3>Importância do Acesso Precoce ao Tratamento</h3>
-                            <p>O tempo decorrido entre o surgimento dos primeiros sintomas característicos da coqueluche (fase catarral) e a administração de antibióticos (como a azitromicina ou claritromicina) é um dos fatores mais determinantes no prognóstico clínico e no controle de surtos comunitários.</p>
-                            <p>O tratamento precoce reduz significativamente:</p>
-                            <ul>
-                                <li>A carga bacteriana na nasofaringe do paciente (reduzindo a transmissão secundária).</li>
-                                <li>A progressão dos sintomas para a fase paroxística grave, que comumente evolui com complicações respiratórias em crianças.</li>
-                                <li>A taxa de letalidade entre lactentes menores de um ano (grupo de maior risco de morte por apneia e pneumonia).</li>
-                            </ul>
+                    <!-- Painel interativo por indicador -->
+                    <div class="vaccine-panel">
+                        <div class="vaccine-chart-card">
+                            <div class="vaccine-chart-head">
+                                <div>
+                                    <span class="state-stat-label">Indicador selecionado</span>
+                                    <h3 id="vaccine-selected-name">Pentavalente</h3>
+                                </div>
+                                <div class="text-right">
+                                    <span class="state-stat-label">Meta de referência</span>
+                                    <h3>95%</h3>
+                                </div>
+                            </div>
+                            <div class="coverage-bars" id="coverage-bars"></div>
+                            <div class="coverage-total" id="coverage-total"></div>
                         </div>
-                        <div class="detail-card">
-                            <h3>Indicadores de Saúde no Cuidado</h3>
-                            <p>As micropolíticas do cuidado de enfermagem evidenciam que o atraso no diagnóstico e início da terapêutica muitas vezes está associado à dificuldade de identificação precoce da suspeita clínica pela equipe de atenção primária, além de barreiras socioespaciais de acesso à rede de saúde.</p>
-                            <p>Com a implantação futura de dados sobre o tempo até o tratamento no SINAN, o dashboard poderá mapear o tempo médio (em dias) por município e sua relação espacial com os locais de maiores taxas de óbito.</p>
+                        <div class="vaccine-gap-card">
+                            <span class="eyebrow">Distância da meta</span>
+                            <strong class="gap-value" id="gap-value">−11,11</strong>
+                            <span class="gap-unit">pontos percentuais</span>
+                            <p id="gap-text"></p>
                         </div>
                     </div>
                 </section>
@@ -99,6 +113,7 @@
 
     <!-- Data and logic scripts -->
     <script src="js/data.js"></script>
+    <script src="js/estudo-data.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

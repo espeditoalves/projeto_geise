@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coqueluche Sudeste - Visão Geral</title>
+    <title>Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,17 +35,13 @@
                     <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg></span>
                     <span class="menu-text">Análise Temporal</span>
                 </a>
-                <a href="tempo-tratamento.html" class="menu-item">
-                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15.5 14"/></svg></span>
-                    <span class="menu-text">Tempo Médio até Tratamento</span>
+                <a href="cobertura-vacinal.html" class="menu-item">
+                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg></span>
+                    <span class="menu-text">Cobertura Vacinal</span>
                 </a>
                 <a href="analise-espacial.html" class="menu-item">
                     <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></span>
                     <span class="menu-text">Análise Espacial</span>
-                </a>
-                <a href="analise-espaco-temporal.html" class="menu-item">
-                    <span class="menu-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                    <span class="menu-text">Análise Espaço-Temporal</span>
                 </a>
             </nav>
             
@@ -58,7 +54,10 @@
         <!-- Main Content Area -->
         <main class="main-content">
             <header class="top-navbar">
-                <h1 id="page-title">Visão Geral</h1>
+                <div class="navbar-titles">
+                    <span class="site-title">Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</span>
+                    <h1 id="page-title">Visão Geral</h1>
+                </div>
                 <div class="nav-actions">
                     <button id="theme-toggle" class="theme-btn" title="Alternar tema">
                         <span class="theme-icon">☀️</span>
@@ -70,64 +69,90 @@
                 <section id="visao-geral" class="tab-content active">
                     <div class="welcome-banner">
                         <div class="banner-text">
-                            <h3>Associação Espacial entre a Cobertura Vacinal e os Casos de Coqueluche</h3>
-                            <p>Esta plataforma apresenta os resultados do estudo epidemiológico e ecológico sobre os casos de coqueluche e sua relação com a imunização na Região Sudeste do Brasil, compreendendo os estados de São Paulo, Rio de Janeiro, Minas Gerais e Espírito Santo.</p>
+                            <h3>Cobertura Vacinal e os Casos De Coqueluche na Região Sudeste do Brasil</h3>
+                            <p>A coqueluche é uma doença infectocontagiosa imunoprevenível e de elevada transmissibilidade que tem apresentado reemergência no Brasil. Apesar da disponibilidade de vacinas há décadas, a doença voltou a representar um importante desafio para os programas de imunização e para a vigilância epidemiológica.</p>
+                            <p>Esta plataforma apresenta os resultados de estudo epidemiológico e ecológico sobre os casos de coqueluche e sua relação com a imunização na Região Sudeste do Brasil, compreendendo os estados de São Paulo, Rio de Janeiro, Minas Gerais e Espírito Santo.</p>
                         </div>
                     </div>
 
                     <!-- Metrics Grid -->
-                    <div class="metrics-grid">
-                        <div class="metric-card">
+                    <div class="overview-grid">
+                        <div class="overview-card">
+                            <span class="overview-icon overview-icon--blue">
+                                <svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="13" width="4" height="8" rx="1"/><rect x="10" y="8" width="4" height="13" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+                            </span>
                             <div class="metric-info">
                                 <span class="metric-label">Total de Casos Confirmados</span>
                                 <h3 class="metric-value">8.034</h3>
                             </div>
                             <div class="metric-badge">Sudeste</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="overview-card">
+                            <span class="overview-icon overview-icon--sky">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg>
+                            </span>
                             <div class="metric-info">
                                 <span class="metric-label">Período Analisado</span>
                                 <h3 class="metric-value">2015 – 2025</h3>
                             </div>
                             <div class="metric-badge secondary">11 Anos</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="overview-card">
+                            <span class="overview-icon overview-icon--teal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4"/><path d="m17 7 3-3"/><path d="M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5"/><path d="m9 11 4 4"/><path d="m5 19-3 3"/><path d="m14 4 6 6"/></svg>
+                            </span>
                             <div class="metric-info">
-                                <span class="metric-label">Estado com maior incidência</span>
-                                <h3 class="metric-value">São Paulo</h3>
+                                <span class="overview-title">Indicadores vacinais</span>
+                                <p class="overview-text">Cobertura vacinal da vacina pentavalente, DTP e dTpa em gestantes</p>
                             </div>
-                            <div class="metric-badge info">4.144 casos</div>
                         </div>
-                        <div class="metric-card">
+                        <div class="overview-card">
+                            <span class="overview-icon overview-icon--purple">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="14" x2="8" y2="12"/><line x1="11" y1="14" x2="11" y2="8"/><line x1="14" y1="14" x2="14" y2="10"/></svg>
+                            </span>
                             <div class="metric-info">
-                                <span class="metric-label">Mortalidade por Coqueluche</span>
-                                <h3 class="metric-value">70 óbitos</h3>
+                                <span class="overview-title">Técnicas de Análise:</span>
+                                <ul class="overview-list">
+                                    <li>Regressão temporal por Joinpoint</li>
+                                    <li>Índices de Moran Global e Local (LISA) para autocorrelação espacial</li>
+                                    <li>Índice de Moran Bivariado para analisar a associação entre cobertura e casos</li>
+                                </ul>
                             </div>
-                            <div class="metric-badge danger">Crianças < 1 ano</div>
                         </div>
                     </div>
 
-                    <div class="details-grid">
-                        <div class="detail-card">
-                            <h3>Resumo do Estudo</h3>
-                            <p>A coqueluche é uma doença infectocontagiosa imunoprevenível de elevada transmissibilidade. Este estudo ecológico, descritivo e de base populacional analisou a tendência temporal e espacial das taxas brutas e suavizadas utilizando dados secundários do <strong>SINAN</strong> e do <strong>PNI</strong>.</p>
-                            <p>A pesquisa evidencia um preocupante aumento de casos no ano de 2024 (com mais de 3.000 casos), impulsionado pelas baixas coberturas vacinais da Pentavalente e DTP, que permanecem abaixo da meta nacional de 95% em todo o território estudado.</p>
+                    <!-- Interactive state map -->
+                    <div class="state-explorer">
+                        <div class="state-map-card">
+                            <h3 class="section-heading">Casos de coqueluche por estado da Região Sudeste</h3>
+                            <p class="section-hint">Clique em um estado destacado no mapa para ver os resultados.</p>
+                            <svg id="brasil-map" class="brasil-map" role="img" aria-label="Mapa do Brasil com a Região Sudeste em destaque"></svg>
                         </div>
-                        <div class="detail-card">
-                            <h3>Delineamento Metodológico</h3>
-                            <ul>
-                                <li><strong>Local do estudo:</strong> Região Sudeste do Brasil (São Paulo, Rio de Janeiro, Minas Gerais e Espírito Santo).</li>
-                                <li><strong>Indicadores Vacinais:</strong> Cobertura vacinal da vacina pentavalente, DTP e dTpa em gestantes.</li>
-                                <li><strong>Técnicas de Análise:</strong>
-                                    <ul>
-                                        <li>Regressão temporal por Joinpoint.</li>
-                                        <li>Índices de Moran Global e Local (LISA) para autocorrelação espacial.</li>
-                                        <li>Índice de Moran Bivariado para analisar a associação entre cobertura e casos.</li>
-                                    </ul>
-                                </li>
-                            </ul>
+                        <div class="state-detail-card" aria-live="polite">
+                            <div class="state-detail-header">
+                                <span class="state-uf-badge" id="state-detail-uf">SP</span>
+                                <div>
+                                    <h3 id="state-detail-name">São Paulo</h3>
+                                    <span>Região Sudeste</span>
+                                </div>
+                            </div>
+                            <div class="state-detail-body">
+                                <div class="state-detail-stats">
+                                    <div>
+                                        <span class="state-stat-label">Total de casos</span>
+                                        <strong class="state-stat-value" id="state-detail-casos">4.144</strong>
+                                        <span class="state-stat-unit">casos</span>
+                                    </div>
+                                    <div>
+                                        <span class="state-stat-label">Percentual da Região Sudeste</span>
+                                        <strong class="state-stat-value" id="state-detail-pct">51,6%</strong>
+                                    </div>
+                                </div>
+                                <p class="state-detail-text" id="state-detail-text"></p>
+                            </div>
                         </div>
                     </div>
+                    <div class="state-buttons" id="state-buttons"></div>
                 </section>
             </div>
         </main>
@@ -135,6 +160,8 @@
 
     <!-- Data and logic scripts -->
     <script src="js/data.js"></script>
+    <script src="js/estudo-data.js"></script>
+    <script src="js/brasil-map.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>
