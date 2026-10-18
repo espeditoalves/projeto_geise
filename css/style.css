@@ -643,6 +643,10 @@ body {
     grid-template-columns: minmax(260px, 54%) 1fr;
 }
 
+.socio-card-body--table-only {
+    display: block;
+}
+
 .socio-chart-col {
     position: relative;
     height: 260px;

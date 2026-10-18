@@ -115,11 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
         {
             key: "escolaridade",
             categories: ["Analfabeto", "1ª a 4ª série incompleta do EF", "4ª série completa do EF", "5ª a 8ª série incompleta do EF", "Ensino fundamental completo", "Ensino médio incompleto", "Ensino médio completo", "Educação superior incompleta", "Educação superior completa", "Não se aplica", "Ignorado"],
-            chartType: "bar",
-            // "Não se aplica" is mostly infants too young for school; at ~10x
-            // every other category it flattens a linear bar chart, so it's
-            // shown in the table but left out of the chart itself
-            excludeFromChart: ["Não se aplica"]
+            // Table-only card — the bar chart was removed, so every category
+            // (including "Não se aplica") is shown in the table
+            chartType: "table"
         },
         {
             key: "criterio_diagnostico",
