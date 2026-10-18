@@ -98,11 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Define section categories and the chart type used to represent each one
     const sectionsConfig = [
         {
-            key: "sexo",
-            categories: ["Masculino", "Feminino", "Ignorado"],
-            chartType: "doughnut"
-        },
-        {
             key: "faixa_etaria",
             categories: ["<1 Ano", "1-4", "5-9", "10-14", "15-19", "20-39", "40-59", "60-64", "65-69", "70-79", "80 e +"],
             chartType: "bar"
@@ -128,15 +123,54 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             key: "criterio_diagnostico",
-            categories: ["Laboratório", "Clínico-epidemiológico", "Clínico", "Ignorado"],
-            chartType: "doughnut"
+            categories: ["Laboratório", "Clínico", "Clínico-epidemiológico", "Ignorado"],
+            chartType: "bars"
         },
         {
             key: "evolucao",
             categories: ["Cura", "Óbito pelo agravo notificado", "Óbito por outra causa", "Ignorado"],
-            chartType: "doughnut"
+            chartType: "bars"
         }
     ];
+
+    // Icon + color for each row of the bar-list cards (Critério / Evolução)
+    const BAR_ICONS = {
+        flask: '<path d="M9 3h6"/><path d="M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/><path d="M7 15h10"/>',
+        stethoscope: '<path d="M5 3v6a5 5 0 0 0 10 0V3"/><path d="M10 14v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/>',
+        users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+        dots: '<circle cx="6" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="18" cy="12" r="1"/>',
+        check: '<polyline points="20 6 9 17 4 12"/>',
+        cross: '<line x1="12" y1="4" x2="12" y2="20"/><line x1="7" y1="9" x2="17" y2="9"/>',
+        question: '<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 2-3 4"/><line x1="12" y1="17" x2="12.01" y2="17"/>'
+    };
+    const BAR_STYLES = {
+        "Laboratório": { icon: "flask", color: "#06b6d4" },
+        "Clínico": { icon: "stethoscope", color: "#3b82f6" },
+        "Clínico-epidemiológico": { icon: "users", color: "#f59e0b" },
+        "Cura": { icon: "check", color: "#10b981" },
+        "Óbito pelo agravo notificado": { icon: "cross", color: "#ef4444" },
+        "Óbito por outra causa": { icon: "cross", color: "#f59e0b" },
+        "Ignorado": { icon: "question", color: "#94a3b8" }
+    };
+
+    function renderBarList(section, stateData) {
+        const list = document.getElementById(`bars-${section.key}`);
+        if (!list) return;
+        const total = stateData.Total || section.categories.reduce((sum, cat) => sum + (stateData[cat] || 0), 0);
+        list.innerHTML = section.categories.map(cat => {
+            const count = stateData[cat] || 0;
+            const pct = total > 0 ? (count / total) * 100 : 0;
+            const style = BAR_STYLES[cat] || BAR_STYLES.Ignorado;
+            const icon = section.key === "criterio_diagnostico" && cat === "Ignorado" ? BAR_ICONS.dots : BAR_ICONS[style.icon];
+            return `
+                <li class="bar-row" style="--bar-color: ${style.color};">
+                    <span class="bar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></span>
+                    <span class="bar-label"><strong>${cat}</strong><span>${formatNumber(count)} casos</span></span>
+                    <span class="bar-track"><span class="bar-fill" style="width: ${pct.toFixed(2)}%;"></span></span>
+                    <span class="bar-pct">${formatPercent(pct)}</span>
+                </li>`;
+        }).join("");
+    }
 
     // Resolve the color(s) used by a section's chart and table swatches
     function getSocioSectionColors(section, colors) {
@@ -156,6 +190,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const sdData = COQUELUCHE_DATA.sociodemografico;
         const stateData = sdData[section.key][state];
         if (!stateData) return;
+        if (section.chartType === "bars") {
+            renderBarList(section, stateData);
+            return;
+        }
 
         let total = stateData["Total"] || stateData["TOTAL"] || 0;
         if (total === 0) {
@@ -330,59 +368,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    function renderSocioSummary(state) {
-        const list = document.getElementById("socio-summary-list");
-        if (!list) return;
-        const sdData = COQUELUCHE_DATA.sociodemografico;
-
-        const sexoData = sdData.sexo[state];
-        const totalCasos = sexoData.Total || sexoData.TOTAL || 0;
-        const pctMasc = totalCasos > 0 ? (sexoData.Masculino / totalCasos) * 100 : 0;
-        const pctFem = totalCasos > 0 ? (sexoData.Feminino / totalCasos) * 100 : 0;
-        const predominantSexo = pctMasc >= pctFem
-            ? { label: "masculino", pct: pctMasc }
-            : { label: "feminino", pct: pctFem };
-
-        const faixaData = sdData.faixa_etaria[state];
-        const faixaCategories = ["<1 Ano", "1-4", "5-9", "10-14", "15-19", "20-39", "40-59", "60-64", "65-69", "70-79", "80 e +"];
-        const faixaTotal = faixaData.Total || faixaCategories.reduce((sum, cat) => sum + (faixaData[cat] || 0), 0);
-        const topFaixa = faixaCategories
-            .map(cat => ({ cat, count: faixaData[cat] || 0 }))
-            .sort((a, b) => b.count - a.count)[0];
-        const pctFaixa = faixaTotal > 0 ? (topFaixa.count / faixaTotal) * 100 : 0;
-
-        const racaData = sdData.raca[state];
-        const racaCategories = ["Branca", "Preta", "Parda", "Amarela", "Indigena"];
-        const racaTotal = racaData.Total || 0;
-        const topRaca = racaCategories
-            .map(cat => ({ cat, count: racaData[cat] || 0 }))
-            .sort((a, b) => b.count - a.count)[0];
-        const pctRaca = racaTotal > 0 ? (topRaca.count / racaTotal) * 100 : 0;
-
-        const diagData = sdData.criterio_diagnostico[state];
-        const diagTotal = diagData.Total || 0;
-        const pctLab = diagTotal > 0 ? (diagData["Laboratório"] / diagTotal) * 100 : 0;
-
-        const evolData = sdData.evolucao[state];
-        const evolTotal = evolData.Total || 0;
-        const obitosAgravo = evolData["Óbito pelo agravo notificado"] || 0;
-        const obitosOutraCausa = evolData["Óbito por outra causa"] || 0;
-
-        const zonaData = sdData.zona[state];
-        const zonaTotal = zonaData.Total || 0;
-        const pctIgnoradoZona = zonaTotal > 0 ? (zonaData.Ignorado / zonaTotal) * 100 : 0;
-
-        const items = [
-            `<li class="summary-item"><span class="summary-dot"></span><span>O recorte selecionado registrou <strong>${formatNumber(totalCasos)} casos</strong> de coqueluche, com predominância do sexo ${predominantSexo.label} (<strong>${formatPercent1(predominantSexo.pct)}</strong>).</span></li>`,
-            `<li class="summary-item"><span class="summary-dot dot-purple"></span><span>A faixa etária <strong>${topFaixa.cat}</strong> concentrou <strong>${formatPercent1(pctFaixa)}</strong> dos casos notificados.</span></li>`,
-            `<li class="summary-item"><span class="summary-dot dot-green"></span><span>O critério <strong>${pctLab >= 50 ? "laboratorial" : "clínico"}</strong> respondeu por <strong>${formatPercent1(pctLab)}</strong> dos diagnósticos confirmatórios.</span></li>`,
-            `<li class="summary-item"><span class="summary-dot dot-orange"></span><span>Predomínio de casos em pessoas de raça/cor <strong>${topRaca.cat.toLowerCase()}</strong> (<strong>${formatPercent1(pctRaca)}</strong>), com proporção relevante de registros ignorados na variável zona de residência (<strong>${formatPercent1(pctIgnoradoZona)}</strong>).</span></li>`,
-            `<li class="summary-item"><span class="summary-dot dot-red"></span><span>Foram registrados <strong>${formatNumber(obitosAgravo)} óbitos pelo agravo notificado</strong> e ${formatNumber(obitosOutraCausa)} óbitos por outra causa, em um total de ${formatNumber(evolTotal)} casos com evolução informada.</span></li>`
-        ];
-
-        list.innerHTML = items.join("");
-    }
-
     function renderSocioKpis(state) {
         const totalEl = document.getElementById("kpi-total");
         if (!totalEl) return;
@@ -405,7 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function renderAllSocioSections(state) {
         renderSocioKpis(state);
         sectionsConfig.forEach(section => renderSocioSection(section, state));
-        renderSocioSummary(state);
     }
 
     // ----------------------------------------------------
@@ -434,88 +418,255 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderTemporalCharts() {
-        if (!document.getElementById("chart-temporal-casos")) return;
-        const tempData = COQUELUCHE_DATA.temporal;
-        const labels = tempData.map(row => row.ANO);
-        const casos = tempData.map(row => row.COQUELUCHE);
-        const taxas = tempData.map(row => row.TAXA);
+        if (!document.getElementById("chart-taxa-observada")) return;
+        const taxas = ESTUDO_DATA.taxas;
+        const labels = taxas.map(row => row.ano);
         const colors = getThemeColors();
 
-        // 1. Cases Chart
-        if (chartInstanceTempCasos) chartInstanceTempCasos.destroy();
-        const ctxCasos = document.getElementById("chart-temporal-casos").getContext("2d");
-        chartInstanceTempCasos = new Chart(ctxCasos, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Casos Confirmados',
-                    data: casos,
-                    borderColor: colors.accentBlue,
-                    backgroundColor: colors.accentBlue + '20',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.3,
-                    pointBackgroundColor: colors.accentBlue,
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { labels: { color: colors.text } }
+        function rateChart(canvasId, label, values, color) {
+            return new Chart(document.getElementById(canvasId).getContext("2d"), {
+                type: "line",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: label,
+                        data: values,
+                        borderColor: color,
+                        backgroundColor: color + "20",
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3,
+                        pointBackgroundColor: color,
+                        pointRadius: 5
+                    }]
                 },
-                scales: {
-                    x: {
-                        ticks: { color: colors.text },
-                        grid: { color: colors.grid }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { labels: { color: colors.text } },
+                        tooltip: {
+                            callbacks: {
+                                label: (ctx) => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`
+                            }
+                        }
                     },
-                    y: {
-                        ticks: { color: colors.text },
-                        grid: { color: colors.grid }
+                    scales: {
+                        x: {
+                            ticks: { color: colors.text },
+                            grid: { color: colors.grid }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 3.5,
+                            title: { display: true, text: "por 100.000 hab.", color: colors.text },
+                            ticks: { color: colors.text },
+                            grid: { color: colors.grid }
+                        }
                     }
                 }
+            });
+        }
+
+        if (chartInstanceTempCasos) chartInstanceTempCasos.destroy();
+        chartInstanceTempCasos = rateChart("chart-taxa-observada", "Taxa Bruta Observada", taxas.map(r => r.observada), colors.accentOrange);
+
+        if (chartInstanceTempTaxa) chartInstanceTempTaxa.destroy();
+        chartInstanceTempTaxa = rateChart("chart-taxa-modelada", "Taxa Bruta Modelada", taxas.map(r => r.modelada), colors.accentBlue);
+    }
+
+    // ----------------------------------------------------
+    // VISÃO GERAL: MAPA INTERATIVO DOS ESTADOS
+    // ----------------------------------------------------
+    const brasilMap = document.getElementById("brasil-map");
+
+    function selectState(uf) {
+        const state = ESTUDO_DATA.casosUF.find(s => s.uf === uf);
+        if (!state) return;
+        document.getElementById("state-detail-uf").textContent = state.uf;
+        document.getElementById("state-detail-name").textContent = state.nome;
+        document.getElementById("state-detail-casos").textContent = formatNumber(state.casos);
+        document.getElementById("state-detail-pct").textContent = formatPercent1(state.pct);
+        document.getElementById("state-detail-text").textContent =
+            `${state.nome} concentrou ${formatNumber(state.casos)} casos de coqueluche no período analisado, representando ${formatPercent1(state.pct)} do total de casos da Região Sudeste.`;
+        brasilMap.querySelectorAll(".uf-sudeste").forEach(p => p.classList.toggle("selected", p.dataset.uf === uf));
+        document.querySelectorAll(".state-btn").forEach(b => {
+            b.classList.toggle("active", b.dataset.uf === uf);
+            b.setAttribute("aria-pressed", b.dataset.uf === uf);
+        });
+    }
+
+    function renderBrasilMap() {
+        const ns = "http://www.w3.org/2000/svg";
+        const sudeste = new Set(ESTUDO_DATA.casosUF.map(s => s.uf));
+        brasilMap.setAttribute("viewBox", `0 0 ${BRASIL_MAP.w} ${BRASIL_MAP.h}`);
+
+        BRASIL_MAP.states.forEach(s => {
+            const path = document.createElementNS(ns, "path");
+            path.setAttribute("d", s.d);
+            path.dataset.uf = s.uf;
+            if (sudeste.has(s.uf)) {
+                path.classList.add("uf-sudeste", `uf-${s.uf.toLowerCase()}`);
+                path.setAttribute("tabindex", "0");
+                path.setAttribute("role", "button");
+                path.setAttribute("aria-label", s.name);
+                const title = document.createElementNS(ns, "title");
+                title.textContent = s.name;
+                path.appendChild(title);
+                path.addEventListener("click", () => selectState(s.uf));
+                path.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectState(s.uf); }
+                });
+            } else {
+                path.classList.add("uf-outro");
             }
+            brasilMap.appendChild(path);
         });
 
-        // 2. Incidence Rate Chart
-        if (chartInstanceTempTaxa) chartInstanceTempTaxa.destroy();
-        const ctxTaxa = document.getElementById("chart-temporal-taxa").getContext("2d");
-        chartInstanceTempTaxa = new Chart(ctxTaxa, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Taxa de Incidência (por 100 mil)',
-                    data: taxas,
-                    borderColor: colors.accentOrange,
-                    backgroundColor: colors.accentOrange + '20',
-                    borderWidth: 3,
-                    fill: true,
-                    tension: 0.3,
-                    pointBackgroundColor: colors.accentOrange,
-                    pointRadius: 5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { labels: { color: colors.text } }
-                },
-                scales: {
-                    x: {
-                        ticks: { color: colors.text },
-                        grid: { color: colors.grid }
-                    },
-                    y: {
-                        ticks: { color: colors.text },
-                        grid: { color: colors.grid }
-                    }
-                }
-            }
+        // UF labels placed at each Sudeste state's bounding-box center
+        ESTUDO_DATA.casosUF.forEach(s => {
+            const path = brasilMap.querySelector(`[data-uf="${s.uf}"]`);
+            const box = path.getBBox();
+            const offsets = { ES: [6, 0], RJ: [4, 6], SP: [0, 4], MG: [0, -4] };
+            const [dx, dy] = offsets[s.uf] || [0, 0];
+            const label = document.createElementNS(ns, "text");
+            label.setAttribute("x", box.x + box.width / 2 + dx);
+            label.setAttribute("y", box.y + box.height / 2 + dy);
+            label.setAttribute("class", "uf-label");
+            label.textContent = s.uf;
+            brasilMap.appendChild(label);
         });
+
+        document.getElementById("state-buttons").innerHTML = ESTUDO_DATA.casosUF.map(s => `
+            <button class="state-btn" data-uf="${s.uf}" aria-pressed="false">
+                <span class="state-uf-badge">${s.uf}</span>
+                <span class="state-btn-text">
+                    <span>${s.nome}</span>
+                    <strong>${formatNumber(s.casos)}</strong>
+                    <small>casos (${formatPercent1(s.pct)})</small>
+                </span>
+            </button>`).join("");
+        document.querySelectorAll(".state-btn").forEach(b => b.addEventListener("click", () => selectState(b.dataset.uf)));
+
+        selectState("SP");
+    }
+
+    // ----------------------------------------------------
+    // COBERTURA VACINAL: PAINEL INTERATIVO
+    // ----------------------------------------------------
+    const vaccineSteps = document.getElementById("vaccine-steps");
+
+    function formatCoverage(num) {
+        return num.toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "%";
+    }
+
+    function coverageBar(label, value, extraClass) {
+        const meta = ESTUDO_DATA.metaVacinal;
+        return `
+            <div class="coverage-row ${extraClass || ""}">
+                <div class="coverage-row-head"><span>${label}</span><strong>${formatCoverage(value)}</strong></div>
+                <div class="coverage-track">
+                    <span class="coverage-fill" style="width: ${value}%;"></span>
+                    <span class="coverage-meta" style="left: ${meta}%;" title="Meta ${meta}%"></span>
+                </div>
+            </div>`;
+    }
+
+    function selectVaccine(key) {
+        const vacina = ESTUDO_DATA.vacinas.find(v => v.key === key);
+        const cobertura = ESTUDO_DATA.cobertura;
+        const states = Object.keys(cobertura).filter(uf => uf !== "Total (Sudeste)");
+        const media = cobertura["Total (Sudeste)"][key];
+        const meta = ESTUDO_DATA.metaVacinal;
+
+        document.getElementById("vaccine-selected-name").textContent = vacina.nome;
+        document.getElementById("coverage-bars").innerHTML = states.map(uf => coverageBar(uf, cobertura[uf][key])).join("");
+        document.getElementById("coverage-total").innerHTML =
+            coverageBar("Média da Região Sudeste", media, "coverage-row--total") +
+            `<div class="coverage-scale"><span>0%</span><span style="left: ${meta}%;">Meta ${meta}%</span><span>100%</span></div>`;
+
+        const lowest = states.reduce((min, uf) => cobertura[uf][key] < cobertura[min][key] ? uf : min, states[0]);
+        const gap = media - meta;
+        document.getElementById("gap-value").textContent = (gap < 0 ? "−" : "+") + Math.abs(gap).toLocaleString("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById("gap-text").innerHTML =
+            `<strong>${lowest}</strong> apresenta a menor cobertura neste indicador: <strong>${formatCoverage(cobertura[lowest][key])}</strong>.`;
+
+        vaccineSteps.querySelectorAll(".vaccine-step").forEach(b => {
+            const active = b.dataset.key === key;
+            b.classList.toggle("active", active);
+            b.setAttribute("aria-selected", active);
+        });
+    }
+
+    function renderVaccinePanel() {
+        const media = ESTUDO_DATA.cobertura["Total (Sudeste)"];
+        vaccineSteps.innerHTML = ESTUDO_DATA.vacinas.map((v, i) => `
+            <button class="vaccine-step" role="tab" aria-selected="false" data-key="${v.key}">
+                <span class="vaccine-step-num">${i + 1}</span>
+                <span class="vaccine-step-name">${v.nome}</span>
+                <strong>${formatCoverage(media[v.key])}</strong>
+            </button>`).join("");
+        vaccineSteps.querySelectorAll(".vaccine-step").forEach(b => b.addEventListener("click", () => selectVaccine(b.dataset.key)));
+        selectVaccine("penta");
+    }
+
+    // ----------------------------------------------------
+    // ANÁLISE ESPACIAL: ETAPAS E MAPAS
+    // ----------------------------------------------------
+    const spatialSteps = document.querySelectorAll(".spatial-step");
+
+    const RATE_VIEWS = {
+        bruta: {
+            src: "img/taxa-bruta.png",
+            alt: "Mapa das taxas brutas de incidência de coqueluche por município da Região Sudeste",
+            caption: "A: Taxas brutas de incidência por 100.000 habitantes, por município de notificação.",
+            finding: "A análise espacial das taxas revelou heterogeneidade entre os municípios da Região Sudeste. As taxas brutas apresentaram ampla variação, com ocorrência de valores bastante elevados em localidades pontuais, com destaque para áreas do centro-leste de Minas Gerais."
+        },
+        suavizada: {
+            src: "img/taxa-suavizada.png",
+            alt: "Mapa das taxas suavizadas de coqueluche por município da Região Sudeste",
+            caption: "B: Taxas suavizadas pelo método bayesiano empírico local.",
+            finding: "A aplicação das taxas suavizadas reduziu essa heterogeneidade, atenuando as flutuações decorrentes de pequenos denominadores populacionais e revelando um padrão regional mais difuso de áreas com taxas intermediárias, distribuídas em porções de Minas Gerais, do litoral e do interior paulista e do Rio de Janeiro."
+        }
+    };
+
+    function selectRate(rate) {
+        const view = RATE_VIEWS[rate];
+        const img = document.getElementById("rate-map");
+        img.src = view.src;
+        img.alt = view.alt;
+        document.getElementById("rate-caption").textContent = view.caption;
+        document.getElementById("rate-finding").textContent = view.finding;
+        document.querySelectorAll("#rate-toggle .segmented-btn").forEach(b => b.classList.toggle("active", b.dataset.rate === rate));
+    }
+
+    function selectBivariate(key) {
+        const vacina = ESTUDO_DATA.vacinas.find(v => v.key === key);
+        const moran = ESTUDO_DATA.moranBivariado[key];
+        document.getElementById("bivar-map").src = `img/bivariado-${moran.painel}.png`;
+        document.getElementById("bivar-label").textContent = `Índice de Moran Bivariado (${vacina.curto})`;
+        document.getElementById("bivar-value").textContent = moran.valor.toLocaleString("pt-BR", { minimumFractionDigits: 3 });
+        document.getElementById("bivar-caption").textContent =
+            `Figura 4${moran.painel}. Autocorrelação espacial bivariada entre a cobertura vacinal e as taxas de coqueluche na Região Sudeste do Brasil, 2015–2025. ${moran.painel}: ${moran.descricao}. Passe o mouse sobre a legenda para ver a interpretação.`;
+        document.querySelectorAll("#bivar-toggle .segmented-btn").forEach(b => b.classList.toggle("active", b.dataset.key === key));
+    }
+
+    function initSpatial() {
+        spatialSteps.forEach(btn => btn.addEventListener("click", () => {
+            spatialSteps.forEach(b => {
+                const active = b === btn;
+                b.classList.toggle("active", active);
+                b.setAttribute("aria-selected", active);
+            });
+            document.querySelectorAll(".spatial-panel").forEach(p => p.classList.toggle("active", p.id === `step-${btn.dataset.step}`));
+        }));
+
+        document.querySelectorAll("#rate-toggle .segmented-btn").forEach(b => b.addEventListener("click", () => selectRate(b.dataset.rate)));
+
+        const toggle = document.getElementById("bivar-toggle");
+        toggle.innerHTML = ESTUDO_DATA.vacinas.map(v => `<button class="segmented-btn" data-key="${v.key}">${v.nome}</button>`).join("");
+        toggle.querySelectorAll(".segmented-btn").forEach(b => b.addEventListener("click", () => selectBivariate(b.dataset.key)));
+        selectBivariate("penta");
     }
 
     // Helper to update all charts together when theme is toggled
@@ -523,7 +674,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (stateSelector) {
             renderAllSocioSections(stateSelector.value);
         }
-        if (document.getElementById("chart-temporal-casos")) {
+        if (document.getElementById("chart-taxa-observada")) {
             renderTemporalCharts();
         }
     }
@@ -539,4 +690,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (temporalTableBody) {
         renderTemporalData();
     }
+
+    if (brasilMap) renderBrasilMap();
+    if (vaccineSteps) renderVaccinePanel();
+    if (spatialSteps.length) initSpatial();
 });
